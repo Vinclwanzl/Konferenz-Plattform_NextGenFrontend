@@ -1,75 +1,38 @@
-# Nuxt Minimal Starter
+# FrontendNow
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+FrontendNow is a Nuxt 4 and Vue 3 conference program for the FrontendNow event.
 
-## Setup
+## Requirements
 
-Make sure to install dependencies:
+Install a current Node.js release supported by Nuxt 4 and npm.
+
+## Run locally
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+Nuxt prints the local URL when the development server starts.
 
-Build the application for production:
+## Build
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+## Routes
 
-```bash
-# npm
-npm run preview
+- `/` - Conference sessions and filters
+- `/speakers` - Speakers
+- `/my-program` - Saved sessions
 
-# pnpm
-pnpm preview
+## Source structure
 
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- `src/app.vue` - Nuxt application entry
+- `src/pages/` - File-based routes
+- `src/components/base/` - Reusable UI components
+- `src/components/features/` - Conference features
+- `src/components/layout/` - Shared page layout
+- `src/composables/` - Shared reactive state and logic
+- `src/assets/conference-data.json` - Conference dataset

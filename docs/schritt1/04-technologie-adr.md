@@ -7,8 +7,8 @@ Für die Konferenz-App FrontendNow muss ein Projekt-Setup gewählt werden, das d
 Die Entscheidung betrifft nicht die Renderstrategie im Detail, sondern die grundlegende Technologiebasis für die Anwendung.
 
 Alternativen
-Option 1: Nuxt 3
-Nuxt 3 basiert auf Vue 3 und bietet File-based Routing, automatische Layout-/Page-Struktur, Composables und eine produktionsreife Toolchain.
+Option 1: Nuxt 4
+Nuxt 4 basiert auf Vue 3 und bietet File-based Routing, automatische Layout-/Page-Struktur, Composables und eine produktionsreife Toolchain.
 
 Vorteile:
 
@@ -36,7 +36,7 @@ Routing, Struktur und State-Handling müssen selbst organisiert werden
 für mehrere Seiten und späteren Umfang weniger konsistent
 weniger geeignet, wenn die Projektstruktur von Anfang an sauber und skalierbar sein soll
 Entscheidung
-Wir wählen Nuxt 3 als Grundgerüst.
+Wir wählen Nuxt 4 als Grundgerüst.
 
 Die Entscheidung basiert auf dem klaren Routing-Bedarf, der vorhandenen Vue-Erfahrung und der erwarteten späteren Erweiterbarkeit. Nuxt passt hervorragend zu einer Content- und Konferenz-App mit mehreren Seiten, gemeinsamen Layouts und dynamischer Datenpräsentation. Die file-based Routing-Struktur unterstützt eine saubere, nachvollziehbare Projektorganisation.
 
@@ -51,13 +51,15 @@ die Anwendung ist durch Nuxt-Conventionen etwas stärker vorgegeben
 Entscheidungen zu Architektur und Struktur müssen bewusst getroffen werden
 Ein unorganisierter Aufbau würde Nuxt-Mechaniken nicht optimal nutzen
 Ergebnis
-Nuxt 3 ist die passende Grundlage für dieses Projekt. Die Kombination aus Vue 3, file-based Routing, Composables und Nuxt-Layouts schafft die richtige Balance aus Produktivität, Struktur und Erweiterbarkeit. Die Entscheidung bildet die technische Grundlage für die in ADR 02 und dem State-Konzept beschriebenen Architekturen.
+Nuxt 4 ist die passende Grundlage für dieses Projekt. Die Kombination aus Vue 3, file-based Routing, Composables und Nuxt-Layouts schafft die richtige Balance aus Produktivität, Struktur und Erweiterbarkeit. Die Entscheidung bildet die technische Grundlage für die in ADR 02 und dem State-Konzept beschriebenen Architekturen.
 
+```mermaid
 flowchart LR
-    A[Nuxt 3] --> B[Pages]
+    A[Nuxt 4] --> B[Pages]
     A --> C[Layouts]
     A --> D[Composables]
     A --> E[Assets / Data]
     B --> F[Session-Overview]
     B --> G[Speaker-Overview]
     B --> H[My Program]
+```

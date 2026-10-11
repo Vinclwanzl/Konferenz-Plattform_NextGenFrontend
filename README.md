@@ -8,19 +8,18 @@ Install a current Node.js release supported by Nuxt 4 and npm.
 
 ## Run locally
 
-'''bash
-cd Rule_Of_Fun
+```bash
 npm install
 npm run dev
-'''
+```
 
 Nuxt prints the local URL when the development server starts.
 
 ## Build
 
-'''bash
+```bash
 npm run build
-'''
+```
 
 ## Routes
 
@@ -30,10 +29,12 @@ npm run build
 
 ## Source structure
 
-- 'src/app.vue' - Nuxt application entry
-- 'src/pages/' - File-based routes
-- 'src/components/base/' - Reusable UI components
-- 'src/components/features/' - Conference features
-- 'src/components/layout/' - Shared page layout
-- 'src/composables/' - Shared reactive state and logic
-- 'src/assets/conference-data.json' - Conference dataset
+- `docs/schritt1/` - Planning and architecture deliverables
+- `tokens/tokens.css` - Design tokens
+- `src/App.vue` - Application entry
+- `src/pages/` - File-based routes
+- `src/components/base/` - Reusable UI components
+- `src/components/features/` - Conference features
+- `src/components/layout/` - Shared page layout
+- `src/composables/` - Shared reactive state and logic
+- `src/assets/conference-data.json` - Conference dataset

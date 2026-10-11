@@ -1,0 +1,247 @@
+
+:root {
+
+    /* ==========================================================
+       1) CORE / PRIMITIVE TOKENS (Rohwerte)
+       ========================================================== */
+  
+    /* --- Größen --- */
+    --size-0: 0px;
+    --size-05: 0.5px;
+    --size-1: 1px;
+    --size-15: 1.5px;
+    --size-2: 2px;
+    --size-4: 4px;
+    --size-6: 6px;
+    --size-8: 8px;
+    --size-10: 10px;
+    --size-12: 12px;
+    --size-14: 14px;
+    --size-16: 16px;
+    --size-18: 18px;
+    --size-20: 20px;
+    --size-24: 24px;
+    --size-32: 32px;
+    --size-40: 40px;
+    --size-48: 48px;
+    --size-64: 64px;
+    --size-80: 80px;
+    --size-full: 999px;
+  
+    /* --- Farben: Neutral (Flächen & Text) --- */
+    --color-neutral-000: #ffffff;
+    --color-neutral-050: #f8f9fa;
+    --color-neutral-100: #e7e8e9;
+    --color-neutral-200: #d0d1d3;
+    --color-neutral-300: #b8babc;
+    --color-neutral-400: #a1a3a6;
+    --color-neutral-500: #898c90;
+    --color-neutral-600: #6e7073;
+    --color-neutral-700: #525456;
+    --color-neutral-800: #37383a;
+    --color-neutral-900: #1b1c1d;
+    --color-neutral-1000: #000000;
+  
+    /* --- Farben: Red (Status: error) --- */
+    --color-red-100: #f9dddb;
+    --color-red-200: #f2bcb6;
+    --color-red-300: #ec9a92;
+    --color-red-400: #e5796d;
+    --color-red-500: #df5749;
+    --color-red-600: #b2463a;
+    --color-red-700: #86342c;
+    --color-red-800: #59231d;
+    --color-red-900: #2d110f;
+  
+    /* --- Farben: Yellow (Status: warning) --- */
+    --color-yellow-100: #fbfcec;
+    --color-yellow-200: #f6fada;
+    --color-yellow-300: #f2f7c7;
+    --color-yellow-400: #edf5b5;
+    --color-yellow-500: #e9f2a2;
+    --color-yellow-600: #bac282;
+    --color-yellow-700: #8c9161;
+    --color-yellow-800: #5d6141;
+    --color-yellow-900: #2f3020;
+  
+    /* --- Farben: Turquoise --- */
+    --color-turquoise-100: #ecf5f8;
+    --color-turquoise-200: #d8ebf1;
+    --color-turquoise-300: #c5e2eb;
+    --color-turquoise-400: #b1d8e4;
+    --color-turquoise-500: #9ecedd;
+    --color-turquoise-600: #7ea5b1;
+    --color-turquoise-700: #5f7c85;
+    --color-turquoise-800: #3f5258;
+    --color-turquoise-900: #20292c;
+  
+    /* --- Farben: Blue --- */
+    --color-blue-100: #eaeef5;
+    --color-blue-200: #d4ddeb;
+    --color-blue-300: #bfcbe0;
+    --color-blue-400: #a9bad6;
+    --color-blue-500: #94a9cc;
+    --color-blue-600: #7687a3;
+    --color-blue-700: #59657a;
+    --color-blue-800: #3b4452;
+    --color-blue-900: #1e2229;
+  
+    /* --- Farben: Purple (Marke/Akzent) --- */
+    --color-purple-100: #eeeaf5;
+    --color-purple-200: #dcd4eb;
+    --color-purple-300: #cbbfe0;
+    --color-purple-400: #b9a9d6;
+    --color-purple-500: #a894cc;
+    --color-purple-600: #8676a3;
+    --color-purple-700: #65597a;
+    --color-purple-800: #433b52;
+    --color-purple-900: #221e29;
+  
+    /* --- Farben: Green (Status: success) --- */
+    --color-green-100: #eaf5ef;
+    --color-green-200: #d4ebdf;
+    --color-green-300: #bfe0cf;
+    --color-green-400: #a9d6bf;
+    --color-green-500: #94ccaf;
+    --color-green-600: #76a38c;
+    --color-green-700: #597a69;
+    --color-green-800: #3b5246;
+    --color-green-900: #1e2923;
+  
+    /* --- Farben: Teal --- */
+    --color-teal-100: #d2dcdb;
+    --color-teal-200: #a6b9b7;
+    --color-teal-300: #799694;
+    --color-teal-400: #4d7370;
+    --color-teal-500: #20504c;
+    --color-teal-600: #1a403d;
+    --color-teal-700: #13302e;
+    --color-teal-800: #0d201e;
+    --color-teal-900: #06100f;
+  
+    /* ==========================================================
+       2) SEMANTIC TOKENS — LIGHT MODE (Verwendungszweck)
+       ========================================================== */
+  
+    /* --- Flächen (Surface) --- */
+    --color-surface-canvas:   var(--color-neutral-050);  /* Seitenhintergrund */
+    --color-surface-default:  var(--color-neutral-000);  /* Karten, Panels */
+    --color-surface-raised:   var(--color-neutral-100);
+    --color-surface-hover:    var(--color-neutral-200);
+    --color-surface-inverted: var(--color-neutral-900);
+  
+    /* --- Text --- */
+    --color-text-primary:     var(--color-neutral-900);  /* 17.1:1 auf surface-default */
+    --color-text-secondary:   var(--color-neutral-700);  /* 7.6:1 */
+    --color-text-muted:       var(--color-neutral-600);  /* 5.0:1 */
+    --color-text-on-inverted: var(--color-neutral-000);
+    --color-text-link:        var(--color-blue-800);     /* 9.8:1 */
+  
+    /* --- Status: Text --- */
+    --color-text-danger:  var(--color-red-700);      /* 8.3:1 */
+    --color-text-warning: var(--color-yellow-800);   /* 6.5:1 */
+    --color-text-success: var(--color-green-700);    /* 4.8:1 */
+  
+    /* --- Status: Flächen --- */
+    --color-surface-danger:  var(--color-red-100);
+    --color-surface-warning: var(--color-yellow-100);
+    --color-surface-success: var(--color-green-100);
+  
+    /* --- Border --- */
+    --color-border-default:    var(--color-neutral-200);
+    --color-border-emphasized: var(--color-neutral-400);
+  
+    /* --- Akzent / Marke --- */
+    --color-accent-brand:       var(--color-purple-500);
+    --color-accent-brand-hover: var(--color-purple-600);
+    --color-accent-focus-ring:  var(--color-purple-600);  /* 3.9:1 als UI-Grenze */
+  
+    /* --- Track-Farben (Ausnahme: Farbname = Track-Name) --- */
+    --color-track-purple-surface:   var(--color-purple-200);
+    --color-track-purple-accent:    var(--color-purple-500);
+    --color-track-purple-text:      var(--color-purple-700);
+    --color-track-red-surface:      var(--color-red-100);
+    --color-track-red-accent:       var(--color-red-500);
+    --color-track-red-text:         var(--color-red-700);
+    --color-track-yellow-surface:   var(--color-yellow-200);
+    --color-track-yellow-accent:    var(--color-yellow-500);
+    --color-track-yellow-text:      var(--color-yellow-800);
+    --color-track-turquoise-surface: var(--color-turquoise-200);
+    --color-track-turquoise-accent:  var(--color-turquoise-500);
+    --color-track-turquoise-text:    var(--color-turquoise-800);
+    --color-track-blue-surface:     var(--color-blue-200);
+    --color-track-blue-accent:      var(--color-blue-500);
+    --color-track-blue-text:        var(--color-blue-800);
+    --color-track-green-surface:    var(--color-green-200);
+    --color-track-green-accent:     var(--color-green-500);
+    --color-track-green-text:       var(--color-green-800);
+    --color-track-teal-surface:     var(--color-teal-200);
+    --color-track-teal-accent:      var(--color-teal-500);
+    --color-track-teal-text:        var(--color-teal-700);
+  
+    /* --- Spacing (Formel: space-N = N × 4px) --- */
+    --space-0:  var(--size-0);    /*   0px */
+    --space-05: var(--size-2);    /*   2px */
+    --space-1:  var(--size-4);    /*   4px */
+    --space-15: var(--size-6);    /*   6px */
+    --space-2:  var(--size-8);    /*   8px */
+    --space-3:  var(--size-12);   /*  12px */
+    --space-4:  var(--size-16);   /*  16px */
+    --space-5:  var(--size-20);   /*  20px */
+    --space-6:  var(--size-24);   /*  24px */
+    --space-8:  var(--size-32);   /*  32px */
+    --space-10: var(--size-40);   /*  40px */
+    --space-12: var(--size-48);   /*  48px */
+    --space-16: var(--size-64);   /*  64px */
+    --space-20: var(--size-80);   /*  80px */
+  
+    /* --- Border-Width --- */
+    --border-width-hairline: var(--size-05);  /* 0.5px, dünne Trennlinien */
+    --border-width-thin:     var(--size-1);   /* 1px */
+    --border-width-thick:    var(--size-2);   /* 2px */
+  
+    /* --- Radius --- */
+    --radius-none: var(--size-0);
+    --radius-xs:   var(--size-2);
+    --radius-sm:   var(--size-4);
+    --radius-md:   var(--size-6);
+    --radius-lg:   var(--size-8);
+    --radius-xl:   var(--size-12);
+    --radius-2xl:  var(--size-16);
+    --radius-3xl:  var(--size-24);
+    --radius-4xl:  var(--size-32);
+    --radius-full: var(--size-full);
+  
+    /* --- Typografie --- */
+    --font-family-base: 'Roboto', sans-serif;
+    --font-family-mono: 'Roboto Mono', monospace;
+  
+    /* font-weight: reine Zahl, keine Einheit (400=Regular, 500=Medium, 700=Bold) */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+  
+    /* font-size */
+    --font-size-sm:  var(--size-12);  /* 12px */
+    --font-size-base: var(--size-14); /* 14px */
+    --font-size-lg:  var(--size-16);   /* 16px */
+    --font-size-xl:  var(--size-18);   /* 18px */
+    --font-size-2xl: var(--size-20);   /* 20px */
+    --font-size-3xl: var(--size-24);   /* 24px */
+    --font-size-4xl: var(--size-32);   /* 32px */
+  
+    /* line-height: einheitenlos (Verhältnis), in Figma nicht exportierbar — manuell gepflegt */
+    --line-height-tight:  1.2;   /* Display, Headlines */
+    --line-height-snug:   1.3;   /* Labels, Badges */
+    --line-height-normal: 1.5;   /* Body-Text */
+  
+    /* ==========================================================
+       3) COMPONENT TOKENS (referenzieren nur Semantic)
+       ========================================================== */
+  
+    --button-primary-bg:        var(--color-accent-brand);
+    --button-primary-bg-hover:  var(--color-accent-brand-hover);
+    --button-subtle-bg:         var(--color-surface-raised);
+    --button-subtle-bg-hover:   var(--color-surface-hover);
+    --focus-ring:               var(--color-accent-focus-ring);
+  }

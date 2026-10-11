@@ -31,7 +31,7 @@ npm run build
 
 - `docs/schritt1/` - Planning and architecture deliverables
 - `tokens/tokens.css` - Design tokens
-- `src/App.vue` - Application entry
+- `src/app.vue` - Nuxt application entry
 - `src/pages/` - File-based routes
 - `src/components/base/` - Reusable UI components
 - `src/components/features/` - Conference features

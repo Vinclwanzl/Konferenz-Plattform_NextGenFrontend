@@ -8,31 +8,31 @@ Install a current Node.js release supported by Nuxt 4 and npm.
 
 ## Run locally
 
-```bash
+'''bash
 npm install
 npm run dev
-```
+'''
 
 Nuxt prints the local URL when the development server starts.
 
 ## Build
 
-```bash
+'''bash
 npm run build
-```
+'''
 
 ## Routes
 
-- `/` - Conference sessions and filters
-- `/speakers` - Speakers
-- `/my-program` - Saved sessions
+- '/' - Conference sessions and filters
+- '/speakers' - Speakers
+- '/user-program' - Saved sessions
 
 ## Source structure
 
-- `src/app.vue` - Nuxt application entry
-- `src/pages/` - File-based routes
-- `src/components/base/` - Reusable UI components
-- `src/components/features/` - Conference features
-- `src/components/layout/` - Shared page layout
-- `src/composables/` - Shared reactive state and logic
-- `src/assets/conference-data.json` - Conference dataset
+- 'src/app.vue' - Nuxt application entry
+- 'src/pages/' - File-based routes
+- 'src/components/base/' - Reusable UI components
+- 'src/components/features/' - Conference features
+- 'src/components/layout/' - Shared page layout
+- 'src/composables/' - Shared reactive state and logic
+- 'src/assets/conference-data.json' - Conference dataset

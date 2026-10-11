@@ -4,7 +4,7 @@
 		<nav aria-label="Main navigation">
 			<NuxtLink to="/">Overview</NuxtLink>
 			<NuxtLink to="/speakers">Speakers</NuxtLink>
-			<NuxtLink to="/my-program">My Program</NuxtLink>
+			<NuxtLink to="/user-program">My Program</NuxtLink>
 		</nav>
 	</header>
 </template>

@@ -24,3 +24,20 @@ const selectedTrack = defineModel<string>('selectedTrack', { default: '' })
     />
   </div>
 </template>
+
+<style scoped>
+.filter-bar {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  margin: var(--space-4) 0 var(--space-6);
+}
+
+.filter-bar > * {
+  flex: 1;
+}
+
+.filter-bar > :last-child {
+  flex: 0 0 220px;
+}
+</style>

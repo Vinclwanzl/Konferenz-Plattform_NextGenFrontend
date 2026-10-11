@@ -19,10 +19,21 @@ defineEmits(['update:modelValue'])
 
 <style scoped>
 .base-input {
-  padding: var(--spacing-sm) var(--spacing-md);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-pill);
-  background-color: var(--color-surface);
+  width: 100%;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-default);
   color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+}
+
+.base-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.base-input:focus {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 </style>

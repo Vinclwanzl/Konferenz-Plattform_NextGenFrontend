@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import SessionFilterBar from '~/components/features/filter/SessionFilterBar.vue'
 import SessionCard from '~/components/features/sessions/SessionCard.vue'
+import HeroSection from '~/components/layout/HeroSection.vue'
 
-const { conference, sessions, tracks } = useConferenceData()
+const { sessions, tracks } = useConferenceData()
 const { searchQuery, selectedTrack, filteredSessions } = useSessionFilter(sessions)
 
 const trackOptions = computed(() => [
@@ -12,10 +13,11 @@ const trackOptions = computed(() => [
 </script>
 
 <template>
-	<section>
-		<h1>{{ conference.name }}</h1>
-		<p>{{ conference.tagline }}</p>
-		<p>{{ sessions.length }} sessions</p>
+	<section class="conference-page">
+		<header class="page-header">
+			<HeroSection />
+			<p class="meta">{{ sessions.length }} sessions</p>
+		</header>
 
 		<SessionFilterBar
 			v-model:search-query="searchQuery"
@@ -23,7 +25,39 @@ const trackOptions = computed(() => [
 			:track-options="trackOptions"
 		/>
 
-		<p role="status">{{ filteredSessions.length }} sessions shown</p>
-		<SessionCard v-for="session in filteredSessions" :key="session.id" :session="session" />
+		<p class="status" role="status">
+			{{ filteredSessions.length }} session{{ filteredSessions.length === 1 ? '' : 's' }} shown
+		</p>
+		<div v-if="filteredSessions.length" class="session-list">
+			<SessionCard
+				v-for="session in filteredSessions"
+				:key="session.id"
+				:session-id="session.id"
+			/>
+		</div>
 	</section>
 </template>
+
+<style scoped>
+.conference-page {
+  display: block;
+}
+
+.page-header {
+  margin-bottom: var(--space-6);
+}
+
+.meta,
+.status {
+  margin: var(--space-3) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.session-list {
+  display: grid;
+  gap: var(--space-4);
+}
+</style>

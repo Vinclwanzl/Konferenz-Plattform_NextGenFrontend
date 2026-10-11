@@ -9,6 +9,7 @@ Install a current Node.js release supported by Nuxt 4 and npm.
 ## Run locally
 
 '''bash
+cd Rule_Of_Fun
 npm install
 npm run dev
 '''

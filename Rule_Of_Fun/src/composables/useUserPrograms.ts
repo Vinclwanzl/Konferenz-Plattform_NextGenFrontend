@@ -1,7 +1,7 @@
 const STORAGE_KEY = 'frontendnow_user_program'
 
 export const useUserPrograms = () => {
-  const { sessions } = useConferenceData()
+  const { sessions, getSessionsByIds } = useConferenceData()
   const bookmarkedIds = useState<string[]>('my-program-ids', () => [])
   const isHydrated = useState<boolean>('my-program-hydrated', () => false)
 
@@ -45,7 +45,7 @@ export const useUserPrograms = () => {
   const isBookmarked = (id: string) => bookmarkedIds.value.includes(id)
 
   const mySessions = computed(() => {
-    return sessions.value.filter(s => bookmarkedIds.value.includes(s.id))
+    return getSessionsByIds(bookmarkedIds.value)
   })
 
   return {

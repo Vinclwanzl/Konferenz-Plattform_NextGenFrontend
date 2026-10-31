@@ -4,10 +4,16 @@ type TrackOption = {
   value: string
 }
 
-defineProps<{ trackOptions: TrackOption[] }>()
+defineProps<{ 
+  trackOptions: TrackOption[]
+  dayOptions: TrackOption[]
+  levelOptions: TrackOption[]
+}>()
 
 const searchQuery = defineModel<string>('searchQuery', { default: '' })
 const selectedTrack = defineModel<string>('selectedTrack', { default: '' })
+const selectedDay = defineModel<string>('selectedDay', {default: '' })
+const selectedLevel = defineModel<string>('selectedLevel', {default: '' })
 </script>
 
 <template>
@@ -22,6 +28,16 @@ const selectedTrack = defineModel<string>('selectedTrack', { default: '' })
       aria-label="Filter by track"
       :options="trackOptions"
     />
+     <BaseSelect
+      v-model="selectedDay"
+      aria-label="Filter by day"
+      :options="dayOptions"
+    />
+     <BaseSelect
+      v-model="selectedLevel"
+      aria-label="Filter by level"
+      :options="levelOptions"
+    />    
   </div>
 </template>
 

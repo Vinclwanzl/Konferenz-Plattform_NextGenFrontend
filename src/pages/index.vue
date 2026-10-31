@@ -4,7 +4,7 @@ import SessionCard from '~/components/features/sessions/SessionCard.vue'
 import HeroSection from '~/components/layout/HeroSection.vue'
 
 const { sessions, tracks, conference } = useConferenceData()
-const { searchQuery, selectedTrack, selectedDay, selectedLevel, hasActiveFilters, filteredSessions } = useSessionFilter(sessions)
+const { searchQuery, selectedTrack, selectedDay, selectedLevel, hasActiveFilters, filteredSessions, clearFilters } = useSessionFilter(sessions)
 
 const trackOptions = computed(() => [
 	{ label: 'All tracks', value: '' },
@@ -40,6 +40,7 @@ const levelOptions = computed(() => [
    			:track-options="trackOptions"
     		:day-options="dayOptions"
     		:level-options="levelOptions"
+			@clear="clearFilters"
 		/>
 
 		<p class="status" role="status">

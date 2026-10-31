@@ -14,6 +14,8 @@ const searchQuery = defineModel<string>('searchQuery', { default: '' })
 const selectedTrack = defineModel<string>('selectedTrack', { default: '' })
 const selectedDay = defineModel<string>('selectedDay', {default: '' })
 const selectedLevel = defineModel<string>('selectedLevel', {default: '' })
+
+const emit = defineEmits<{ clear: [] }>()
 </script>
 
 <template>
@@ -38,6 +40,15 @@ const selectedLevel = defineModel<string>('selectedLevel', {default: '' })
       aria-label="Filter by level"
       :options="levelOptions"
     />    
+
+    <BaseButton
+      type="button"
+      aria-label="Reset all filters"
+      @click="$emit('clear')"
+    >
+      Reset
+    </BaseButton>
+
   </div>
 </template>
 

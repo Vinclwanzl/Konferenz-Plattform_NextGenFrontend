@@ -36,5 +36,9 @@ export const useSessionFilter = <T extends FilterableSession>(sessions: MaybeRef
 
 	}
 
-	return { searchQuery, selectedTrack, selectedDay, selectedLevel, filteredSessions, clearFilters }
+	const hasActiveFilters = computed(() =>
+        Boolean(searchQuery.value || selectedTrack.value || selectedDay.value || selectedLevel.value)
+    )
+
+	return { searchQuery, selectedTrack, selectedDay, selectedLevel, filteredSessions, hasActiveFilters, clearFilters }
 }

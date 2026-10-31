@@ -3,12 +3,25 @@ import SessionFilterBar from '~/components/features/filter/SessionFilterBar.vue'
 import SessionCard from '~/components/features/sessions/SessionCard.vue'
 import HeroSection from '~/components/layout/HeroSection.vue'
 
-const { sessions, tracks } = useConferenceData()
-const { searchQuery, selectedTrack, filteredSessions } = useSessionFilter(sessions)
+const { sessions, tracks, conference } = useConferenceData()
+const { searchQuery, selectedTrack, selectedDay, selectedLevel, hasActiveFilters, filteredSessions } = useSessionFilter(sessions)
 
 const trackOptions = computed(() => [
 	{ label: 'All tracks', value: '' },
 	...tracks.value.map(track => ({ label: track.name, value: track.id }))
+])
+
+const dayOptions = computed(() => [
+    { label: 'All days', value: '' },
+    ...conference.value.dates.map(date => ({ label: date, value: date }))
+])
+
+const levelOptions = computed(() => [
+    { label: 'All levels', value: '' },
+    ...[...new Set(sessions.value.map(session => session.level))].map(level => ({
+        label: level,
+        value: level
+    }))
 ])
 </script>
 
@@ -22,12 +35,17 @@ const trackOptions = computed(() => [
 		<SessionFilterBar
 			v-model:search-query="searchQuery"
 			v-model:selected-track="selectedTrack"
-			:track-options="trackOptions"
+			v-model:selected-day="selectedDay"
+    		v-model:selected-level="selectedLevel"
+   			:track-options="trackOptions"
+    		:day-options="dayOptions"
+    		:level-options="levelOptions"
 		/>
 
 		<p class="status" role="status">
 			{{ filteredSessions.length }} session{{ filteredSessions.length === 1 ? '' : 's' }} shown
 		</p>
+
 		<div v-if="filteredSessions.length" class="session-list">
 			<SessionCard
 				v-for="session in filteredSessions"
@@ -35,6 +53,10 @@ const trackOptions = computed(() => [
 				:session-id="session.id"
 			/>
 		</div>
+
+		<p v-else-if="hasActiveFilters" class="empty">
+    		No sessions match the selected filters.
+		</p>
 	</section>
 </template>
 

@@ -1,5 +1,5 @@
 import conferenceData from '~/assets/conference-data.json'
-import type { ConferenceData, Session } from '~/types/conference'
+import type { ConferenceData, Session, Speaker } from '~/types/conference'
 
 export const useConferenceData = () => {
 	const data = useState<ConferenceData>('conference-data', () => conferenceData)
@@ -9,11 +9,19 @@ export const useConferenceData = () => {
 		)
 	)
 
+
 	const getSessionById = (id: string) => sessionMap.value[id]
 	const getSessionsByIds = (ids: string[]) =>
 		ids
 			.map((id) => getSessionById(id))
 			.filter((session): session is Session => Boolean(session))
+
+	const speakerMap = computed(() => 
+	Object.fromEntries(
+		data.value.speakers.map((speaker) => [speaker.id, speaker] as [string, Speaker])
+	))
+
+	const getSpeakerById = (id: string) => speakerMap.value[id] 
 
 	return {
 		conference: computed(() => data.value.conference),
@@ -22,7 +30,9 @@ export const useConferenceData = () => {
 		speakers: computed(() => data.value.speakers),
 		sessions: computed(() => data.value.sessions),
 		sessionMap,
+		speakerMap,
 		getSessionById,
-		getSessionsByIds
+		getSessionsByIds,
+		getSpeakerById
 	}
 }

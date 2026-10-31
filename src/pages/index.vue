@@ -29,7 +29,7 @@ const levelOptions = computed(() => [
 	<section class="conference-page">
 		<header class="page-header">
 			<HeroSection />
-			<p class="meta">{{ sessions.length }} sessions</p>
+			<p class="meta">{{ sessions.length }} total sessions</p>
 		</header>
 
 		<SessionFilterBar
@@ -72,7 +72,7 @@ const levelOptions = computed(() => [
 
 .meta,
 .status {
-  margin: var(--space-3) 0 0;
+  margin: var(--space-3) 0;
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
   text-transform: uppercase;

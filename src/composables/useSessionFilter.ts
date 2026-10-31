@@ -30,8 +30,11 @@ export const useSessionFilter = <T extends FilterableSession>(sessions: MaybeRef
 
 	const clearFilters = () => {
 		searchQuery.value = ''
-		selectedTrack.value = ''
+        selectedTrack.value = ''
+        selectedDay.value = ''
+        selectedLevel.value = ''
+
 	}
 
-	return { searchQuery, selectedTrack, filteredSessions, clearFilters }
+	return { searchQuery, selectedTrack, selectedDay, selectedLevel, filteredSessions, clearFilters }
 }

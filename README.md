@@ -26,7 +26,7 @@ npm run build
 - `/` - Conference sessions with combined filters (search, track, day, level)
 - `/speakers` - All speakers
 - `/speakers/[id]` - Speaker profile with their sessions
-- `/sessions/[id]` - Session detail page (in progress — part C)
+- `/sessions/[id]` - Session detail page
 - `/user-program` - Saved personal program
 
 ## Source structure

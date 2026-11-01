@@ -2,6 +2,8 @@
 
 - Status: Vorgeschlagen (im Team-Review)
 - Datum: 2026-11-01
+- Entscheidungspunkte 1–2: Katharina (Übersicht + Filter, Speaker-Profile)
+- Entscheidungspunkte 3–4: Vincent (Session-Detailseiten, „Mein Programm")
 
 ## Einleitung
 

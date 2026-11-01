@@ -76,3 +76,25 @@ Wir entscheiden uns für SSG. Die IDs aller Sessions werden aus dem Konferenzdat
 ### Konsequenzen
 
 Alle 20 Seiten sind schnell verfügbar und sind verlinkt. Ein zusätzlicher Serverlaufzeitbetrieb ist nicht nötig. Änderungen am Programm erfordern einen neuen Build und ein Deployment. Falls Sessions künftig über ein Live-Backend redigiert werden, muss die Entscheidung zugunsten von SSR oder ISR überprüft werden.
+
+## Entscheidungspunkt 4: „Mein Programm“-Dashboard
+
+### Kontext
+
+Das Dashboard zeigt individuell ausgewählte Sessions. Die jeweiligen IDs liegen im localStorage und sind erst nach dem Laden dort verfügbar. Die Session-Stammdaten bleiben statisch; useUserPrograms() löst gespeicherte IDs über useConferenceData() auf. Diese Aufgabe wurde schon bei der letzten Abgabe zum Großteil erledigt, daher wurde nur die Funktion nach Anforderung überprüft und ein kleiner Feinschliff mit "loading Sessions" Text hinzugefügt.
+
+### Optionen
+
+**Option 1: SSG mit clientseitiger Rehydration.** Nuxt erzeugt die gemeinsame Seitenstruktur beim Build. Nach dem Mounten liest useUserPrograms() die IDs aus dem localStorage; bis dahin zeigt die Seite einen Ladehinweis.
+
+**Option 2: vollständiges CSR.** Eine leere Anwendungsshell würde alle Inhalte erst im Browser erzeugen. Das verzögert unnötig auch die gemeinsame Seitenstruktur und Navigation.
+
+**Option 3: SSR oder ISR.** Dafür müsste die Auswahl über ein Backend und eine Nutzeridentität serverseitig verfügbar sein. Der Server kann localStorage nicht lesen; ohne diese Infrastruktur wären die personalisierten Inhalte nicht korrekt.
+
+### Entscheidung
+
+Wir wählen SSG für die gemeinsame Seite und CSR für die Programmliste. Nach dem Mounten validiert das Composable die gespeicherten IDs gegen verfügbare Sessions. Danach zeigt die Seite die Sessions oder den Leerzustand, Änderungen werden als IDs im localStorage gespeichert.
+
+### Konsequenzen
+
+Die Seite bleibt schnell und benötigt keinen Serverbetrieb; persönliche Daten verlassen den Browser nicht. Beim Neuladen erscheint kurz ein Ladehinweis. Das Programm ist browsergebunden und synchronisiert sich nicht zwischen Geräten. Dafür wäre ein Backend nötig, was eine Neubewertung der Rendering-Strategie erfordern würde.

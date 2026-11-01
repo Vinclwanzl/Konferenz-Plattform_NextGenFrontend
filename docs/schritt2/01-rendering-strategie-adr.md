@@ -54,3 +54,25 @@ Wir entscheiden uns für SSG. Die Profilrouten werden über die in `nuxt.config.
 ### Konsequenzen
 
 Positiv: maximale Performance, vollständige SEO- und Link-Teilbarkeit der Profil-URLs, keine Serverlaufzeit, definierte 404-Semantik. Negativ: Ein neues Speaker-Profil oder eine Bio-Korrektur erfordert einen Rebuild — im Konferenzkontext akzeptabel, da das Programm vor der Veranstaltung feststeht; bei Redaktion zur Laufzeit müsste auf ISR oder SSR mit Backend migriert werden (Nachtrag im ADR).
+
+## Entscheidungspunkt 3: Session-Detailseiten
+
+### Kontext
+
+Jede Session besitzt eine eigene Route mit Titel, Abstract, Zeit, Raum, Track, Level, Format und Speaker-Links die in der datei conference-data.json gespeichert sind. Die Detailseiten sind über die Session-Übersicht und Speaker-Profile erreichbar und sollen außerdem direkt teilbare, indexierbare URLs bieten.
+
+### Optionen
+
+**Option 1: SSG.** Nuxt erzeugt beim Build eine HTML-Seite für jede Session-ID. Das passt zum statischen Datensatz und macht alle Inhalte ohne Laufzeitserver verfügbar.
+
+**Option 2: CSR.** Eine gemeinsame leere Seitenschale würde die Session-Daten erst im Browser auflösen. Das bringt hier keinen Vorteil, verschlechtert aber den initial sichtbaren Inhalt und die Auffindbarkeit der Detailseiten.
+
+**Option 3: SSR oder ISR.** SSR wäre sinnvoll, wenn Session-Inhalte bei jedem Request aus einer veränderlichen Datenquelle geladen werden müssten. ISR könnte Änderungen zwischen Deployments abbilden. Beides ist für die aktuell eingecheckten Daten nicht erforderlich.
+
+### Entscheidung
+
+Wir entscheiden uns für SSG. Die IDs aller Sessions werden aus dem Konferenzdatensatz in nitro.prerender.routes aufgenommen. Die Detailroute nutzt useConferenceData() als zentrale Datenquelle und löst Track, Raum und Speaker über ihre IDs auf. Eine unbekannte Session-ID liefert einen 404-Fehler.
+
+### Konsequenzen
+
+Alle 20 Seiten sind schnell verfügbar und sind verlinkt. Ein zusätzlicher Serverlaufzeitbetrieb ist nicht nötig. Änderungen am Programm erfordern einen neuen Build und ein Deployment. Falls Sessions künftig über ein Live-Backend redigiert werden, muss die Entscheidung zugunsten von SSR oder ISR überprüft werden.

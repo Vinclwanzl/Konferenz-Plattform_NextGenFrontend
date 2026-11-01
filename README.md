@@ -23,9 +23,11 @@ npm run build
 
 ## Routes
 
-- '/' - Conference sessions and filters
-- '/speakers' - Speakers
-- '/user-program' - Saved sessions
+- `/` - Conference sessions with combined filters (search, track, day, level)
+- `/speakers` - All speakers
+- `/speakers/[id]` - Speaker profile with their sessions
+- `/sessions/[id]` - Session detail page (in progress — part C)
+- `/user-program` - Saved personal program
 
 ## Source structure
 
@@ -38,3 +40,13 @@ npm run build
 - `src/components/layout/` - Shared page layout
 - `src/composables/` - Shared reactive state and logic
 - `src/assets/conference-data.json` - Conference dataset
+
+## Rendering
+
+The app is statically generated (SSG) via `npm run generate`: the conference
+dataset is a static JSON file checked into the build, so all session and
+speaker pages are prerendered at build time. Filtering on the overview runs
+client-side (CSR), because filter state is per-user interaction state that
+only exists in the browser. The personal program is CSR-only and persists
+in localStorage. Full reasoning per application part:
+`docs/schritt2/01-rendering-strategie-adr.md`.

@@ -50,6 +50,7 @@ export const useUserPrograms = () => {
 
   return {
     bookmarkedIds: readonly(bookmarkedIds),
+    isHydrated: readonly(isHydrated),
     mySessions,
     toggleBookmark,
     isBookmarked

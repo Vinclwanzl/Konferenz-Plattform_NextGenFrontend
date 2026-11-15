@@ -4,6 +4,12 @@ export default defineNuxtConfig({
   srcDir: 'src/',
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  app: {
+    head: {
+      link: [{ rel: 'manifest', href: '/manifest.webmanifest' }],
+      meta: [{ name: 'theme-color', content: '#A894CC' }]
+    }
+  },
 
   // NEW: the PWA module
   modules: ['@vite-pwa/nuxt'],
@@ -18,10 +24,10 @@ export default defineNuxtConfig({
       lang: 'de',
       display: 'standalone',
       start_url: '/',
-      theme_color: '#<your accent-brand value, purple-600>',
-      background_color: '#<your surface-default value, off-white>',
+      theme_color: '#A894CC',
+      background_color: '#F8F9FA',
       icons: [
-        { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+        { src: 'icons/icon-512-1.png', sizes: '192x192', type: 'image/png' },
         { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' },
         { src: 'icons/icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
       ]

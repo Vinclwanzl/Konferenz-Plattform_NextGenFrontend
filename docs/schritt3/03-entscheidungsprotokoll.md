@@ -29,27 +29,29 @@ Umsetzung über `@vite-pwa/nuxt` mit `generateSW`-Strategie; der Navigation-Fall
 
 ## Testszenarien
 
-Beide Teammitglieder haben die Szenarien unabhängig auf eigenen Rechnern durchgeführt (Chrome DevTools, Network-Tab „Offline"; statischer Build via `npm run generate` auf lokalem HTTP-Server).
+Die Szenarien wurden von beiden Teammitgliedern unabhängig auf eigenen Rechnern geprüft (Chrome DevTools, Network-Tab „Offline“; generierte App auf lokalem HTTP-Server). Die Screenshots dokumentieren die jeweiligen Browserzustände. Beim direkten Offline-Aufruf von „Mein Programm“ unterschieden sich die Ergebnisse je nach verwendetem lokalen Server; dieser Unterschied wird bei Szenario ii festgehalten und nicht als uneingeschränkt bestanden gewertet.
 
 ### Szenario i: Online geladen, dann Flugmodus, Session-Übersicht erneut geöffnet
 
-- **Ausgangslage:** App wurde mindestens einmal online geladen; Service Worker aktiv, Precache gefüllt 117 Einträgen.
-- **Aktion:** DevTools Network „Offline" aktiviert, anschließend Startseite und Session-Übersicht über die Navigation aufgerufen.
-    Katharina, 15.11.2026, Chrome 157.0.8103.52, macOS: Startseite und Session-Übersicht luden offline aus dem Precache, keine Fehlerseite
-- **Beobachtetes Verhalten:** Seiten laden aus dem Precache, keine Browser-Fehlerseite. Anfangs aufgetretene Fehler (`non-precached-url` für `/`) wurden durch explizite `globPatterns`-Erweiterung behoben und im zweiten Durchlauf bestätigt — Dokumentation des Fix-Zyklus zeigt iterative Entwicklung.
+- **Ausgangslage und Aktion:** Die generierte App wurde online auf `localhost:4173` geöffnet und der Service Worker installiert. Im Chrome-Network-Tab wurde danach „Offline“ aktiviert; die Startseite beziehungsweise Session-Übersicht wurde erneut geöffnet.
+- **Beobachtetes Verhalten:** Die Seite zeigte die Konferenzübersicht mit 20 Sessions statt einer Browser-Fehlerseite. Die DevTools-Aufnahme zeigt erfolgreiche Antworten aus dem Service-Worker-/Cache-Kontext. Eine ergänzende Cache-Aufnahme zeigt 118 Einträge, darunter die Startseite, Session- und Speaker-Routen sowie „Mein Programm“. Ein erster Testlauf hatte noch `non-precached-url` für `/` gemeldet; nach Anpassung der Precaching-Konfiguration wurde der Ablauf erneut geprüft und die Übersicht offline angezeigt.
+- **Ergebnis:** Bestanden für die getestete Produktionsvorschau. Der Screenshot belegt das Verhalten dieser Origin; er sagt nichts über eine frische Installation ohne vorherigen Cache aus.
+- **Belege:** [Offline-Übersicht (Katharina)](./assets/Katharina/Scenario-I-offline-session-overview.png), [Cache-Einträge (Katharina)](./assets/Katharina/Scenario-I-supporting-evidence–filled-cache.png), [Offline-Übersicht (Vincent)](./assets/Vincent/Scenario-I-offline-session-overview.png), [Cache-Einträge (Vincent)](./assets/Vincent/Scenario-I-supporting-evidence–filled-cache.png)
 
 ### Szenario ii: „Mein Programm" offline geöffnet, nachdem Sessions hinzugefügt wurden
 
-- **Ausgangslage:** Mindestens eine Session wurde online zum persönlichen Programm hinzugefügt (localStorage), App einmal geladen.
-- **Aktion:** Offline-Modus aktiviert, „Mein Programm" geöffnet — einmal über App-Navigation, einmal durch direkten Aufruf der Route.
-- **Beobachtetes Verhalten:** [Ergebnis einsetzen: gespeicherte Sessions bleiben sichtbar; Auswahl stammt aus localStorage, nicht aus dem SW-Datencache. Der direkte Offline-Aufruf der Route schlug im ersten Test am statischen Server fehl (Redirect-Antwort im Cache, `ERR_FAILED`); nach Einführung des Navigation-Fallbacks wurde der direkte Aufruf nachgebaut und [Ergebnis des Re-Tests vom Teamkollegen einsetzen].]
+- **Ausgangslage und Aktion:** Online wurden zwei Sessions zum persönlichen Programm hinzugefügt. Danach wurde Chrome auf „Offline“ gestellt und `/user-program` in der Produktionsvorschau direkt geöffnet.
+- **Beobachtetes Verhalten:** Beide Sessions samt Entfernen-Schaltflächen blieben sichtbar. Das passt zur Speicherung der IDs in `localStorage`; die Auswahl wird nicht aus einem SW-Datencache rekonstruiert. Der Screenshot auf `localhost:4173` belegt den direkten Offline-Aufruf. In einem separaten Test mit Pythons statischem Server scheiterte derselbe Aufruf wegen dessen Slash-Redirect (`ERR_FAILED`), obwohl die Seite über App-Navigation offline verfügbar war.
+- **Ergebnis:** In der Produktionsvorschau bestanden. Der abweichende Testserver-Befund bleibt eine Einschränkung und ist beim Cross-Review erneut zu prüfen.
+- **Belege:** [„Mein Programm“ offline (Katharina)](./assets/Katharina/Scenario-II-Mein_Programm-offline.png), [„Mein Programm“ offline (Vincent)](./assets/Vincent/Scenario-II-Mein_Programm-offline.png)
 
 ### Szenario iii: Erstbesuch ohne vorheriges Online-Laden im Offline-Zustand
 
-- **Ausgangslage:** Frische Origin ohne Cache und Service-Worker-Registrierung; Gerät offline.
-- **Aktion:** App-Adresse im Offline-Zustand aufgerufen.
-- **Beobachtetes Verhalten:** Browser meldet `ERR_INTERNET_DISCONNECTED`. Bewertung: akzeptables Verhalten, es existiert schlicht kein gespeicherter Inhalt auf dem Gerät; die App kann offline nichts anzeigen, was sie nie laden konnte. Verbesserungsoption (Offline-Statusseite als Precache-Fallback) wurde erwogen, da sie den Erstbesuch-Offline-Fall technisch nicht abdecken kann (kein Cache vorhanden), wurde sie nicht umgesetzt.
+- **Ausgangslage und Aktion:** Verwendet wurde eine frische Origin ohne Service Worker und App-Cache. In Chrome DevTools wurde „Offline“ aktiviert, bevor die App-Adresse erstmals aufgerufen wurde.
+- **Beobachtetes Verhalten:** Die App konnte nicht laden; Chrome zeigte `ERR_INTERNET_DISCONNECTED`. Es gab keine gespeicherten Programmseiten, aus denen der Service Worker hätte antworten können. Der Screenshot zeigt den fehlgeschlagenen Dokument-Request im Network-Tab.
+- **Ergebnis und Bewertung:** Das ist die erwartete Grenze: Ein Service Worker kann nur zuvor gespeicherte Inhalte bereitstellen. Eine Offline-Statusseite im Precache könnte spätere Verbindungsabbrüche verständlicher machen, aber nicht diesen Erstbesuch ohne vorherige Verbindung abdecken. Der Grenzfall ist daher akzeptabel und transparent dokumentiert.
+- **Belege:** [Erstbesuch offline (Katharina)](./assets/Katharina/Scenario-III-first-visit-offline.png), [Erstbesuch offline (Vincent)](./assets/Vincent/Scenario-III-first-visit-offline.png)
 
 ## Verifikation
 
-Screenshots und Lighthouse-Auszug je Szenario: siehe `04-verifikations-nachweis.md` und `assets/`.
+Screenshots zu den drei Szenarien und der Lighthouse-Bericht sind im [Verifikations-Nachweis](./04-verifikations-nachweis.md) sowie im Ordner `assets/` abgelegt.

@@ -26,8 +26,8 @@ Diese Assets ändern sich während der Veranstaltung gar nicht, veraltete Kopien
 
 **Entscheidung: keine SW-Cache-Strategie für die Daten selbst — sie liegen im localStorage.**
 
-Die Auswahl (Session-IDs) ist nach unserem State-Konzept ohnehin auf dem Gerät gespeichert. Die Caching-Entscheidung betrifft nur die darstellende Seite und Shell: Sie muss im Precache liegen, damit die lokal gespeicherten Daten offline angezeigt werden können. Die Precache-Liste muss daher die Route „Mein Programm" und die Session-Detail-Routen enthalten (Detail-Routen aktuell in der Prerender-Konfiguration noch auskommentiert, vor Umsetzung von Aufgabe C aktivieren).
+Die Auswahl (Session-IDs) ist nach unserem State-Konzept ohnehin auf dem Gerät gespeichert. Die Caching-Entscheidung betrifft nur die darstellende Seite und Shell: Sie muss im Precache liegen, damit die lokal gespeicherten Daten offline angezeigt werden können. Die Precache-Liste enthält daher auch „Mein Programm“; die Session-Detail-Routen werden beim Build vorgerendert und offline verfügbar gemacht. Die Auswahl selbst wird weiterhin aus dem localStorage gelesen und nicht im Service-Worker-Cache gespeichert.
 
 ## Worst Case: vollständiger Verbindungsabbruch
 
-Wurde die App einmal online geladen, bleiben Precache und localStorage vollständig nutzbar; alle drei Datentypen funktionieren offline. Erstbesuch im Offline-Zustand: Es existiert noch kein Cache, akzeptables Verhalten ist eine eigene Offline-Statusseite mit Hinweis, einmal online zu laden; mehr ist technisch nicht möglich, weil schlicht nichts auf dem Gerät gespeichert ist.
+Wurde die App einmal online geladen, bleiben Precache und localStorage nutzbar; die getesteten Kernseiten können offline angezeigt werden. Beim allerersten Aufruf im Offline-Zustand existiert noch kein Cache und der Browser kann die App nicht laden. Das ist der akzeptierte Grenzfall: Nutzer:innen müssen die App einmal online öffnen. Eine Offline-Statusseite könnte bei späteren Verbindungsabbrüchen helfen, aber nicht bei diesem Erstbesuch ohne gespeicherte Inhalte.

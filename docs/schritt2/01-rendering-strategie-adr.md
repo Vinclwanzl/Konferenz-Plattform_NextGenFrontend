@@ -1,6 +1,6 @@
 # ADR: Rendering-Strategie — SSG, CSR, SSR und ISR pro Anwendungsteil
 
-- Status: Vorgeschlagen (im Team-Review)
+- Status: Akzeptiert (im Team-Review)
 - Datum: 2026-11-01
 - Entscheidungspunkte 1–2: Katharina (Übersicht + Filter, Speaker-Profile)
 - Entscheidungspunkte 3–4: Vincent (Session-Detailseiten, „Mein Programm")
